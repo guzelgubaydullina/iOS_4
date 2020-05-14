@@ -3,4 +3,6 @@ target 'PawApp' do
 
   pod 'lottie-ios'
 
+  pod 'Alamofire', '~> 5.1'
+
 end
