@@ -7,16 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "559BD082-00A1-4F4F-BFCF-1E13D3753FB4"
+            uuid = "E273DDCB-3850-4ADF-900A-23F4755A2889"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PawApp/Controllers/ViewController.swift"
+            filePath = "PawApp/Controllers/VKService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "startAnimation()"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "loadFriends(handler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "32426B60-25B8-4E58-8D31-D0AA214DA1A0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PawApp/Controllers/VKService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "loadFriends()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

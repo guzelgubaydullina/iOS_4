@@ -12,10 +12,17 @@
 		700419A124544F2E00A3F994 /* lottieCat.json in Resources */ = {isa = PBXBuildFile; fileRef = 700419A024544F2E00A3F994 /* lottieCat.json */; };
 		70137BF024470A2E00706AA2 /* LaunchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70137BEF24470A2E00706AA2 /* LaunchController.swift */; };
 		703070FB2448700900049E61 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703070FA2448700800049E61 /* UIView+Animation.swift */; };
+		703549EE246C654900B70DE6 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703549ED246C654900B70DE6 /* LogInViewController.swift */; };
+		703549F0246C68BE00B70DE6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703549EF246C68BE00B70DE6 /* WebViewController.swift */; };
+		703549F2246C69B100B70DE6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 703549F1246C69B000B70DE6 /* WebKit.framework */; };
 		706F3C7224338C5F00239D99 /* AllFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F3C7124338C5F00239D99 /* AllFriendsTableViewController.swift */; };
 		706F3C7424338C9700239D99 /* AllFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F3C7324338C9700239D99 /* AllFriendsTableViewCell.swift */; };
+		707CA15F246D33C700617D53 /* VKAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707CA15E246D33C700617D53 /* VKAPIError.swift */; };
+		707CA161246D362A00617D53 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707CA160246D362A00617D53 /* Dictionary+Extension.swift */; };
 		70A2D5ED245C493400301B2B /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A2D5EC245C493400301B2B /* Session.swift */; };
 		70CC06D0245057FD000AC833 /* AnimatedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CC06CF245057FD000AC833 /* AnimatedNavigationController.swift */; };
+		70EBA592246C83EA00FAECEB /* VKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EBA591246C83EA00FAECEB /* VKService.swift */; };
+		70EBA594246C975C00FAECEB /* RequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EBA593246C975C00FAECEB /* RequestsViewController.swift */; };
 		70EDA2C8242A7726003FF902 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EDA2C7242A7726003FF902 /* AppDelegate.swift */; };
 		70EDA2CA242A7726003FF902 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EDA2C9242A7726003FF902 /* SceneDelegate.swift */; };
 		70EDA2CC242A7726003FF902 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EDA2CB242A7726003FF902 /* ViewController.swift */; };
@@ -47,10 +54,17 @@
 		700419A024544F2E00A3F994 /* lottieCat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lottieCat.json; sourceTree = "<group>"; };
 		70137BEF24470A2E00706AA2 /* LaunchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchController.swift; sourceTree = "<group>"; };
 		703070FA2448700800049E61 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
+		703549ED246C654900B70DE6 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		703549EF246C68BE00B70DE6 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		703549F1246C69B000B70DE6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		706F3C7124338C5F00239D99 /* AllFriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFriendsTableViewController.swift; sourceTree = "<group>"; };
 		706F3C7324338C9700239D99 /* AllFriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFriendsTableViewCell.swift; sourceTree = "<group>"; };
+		707CA15E246D33C700617D53 /* VKAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKAPIError.swift; sourceTree = "<group>"; };
+		707CA160246D362A00617D53 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
 		70A2D5EC245C493400301B2B /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		70CC06CF245057FD000AC833 /* AnimatedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedNavigationController.swift; sourceTree = "<group>"; };
+		70EBA591246C83EA00FAECEB /* VKService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKService.swift; sourceTree = "<group>"; };
+		70EBA593246C975C00FAECEB /* RequestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsViewController.swift; sourceTree = "<group>"; };
 		70EDA2C4242A7726003FF902 /* Paw App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paw App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70EDA2C7242A7726003FF902 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70EDA2C9242A7726003FF902 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				703549F2246C69B100B70DE6 /* WebKit.framework in Frameworks */,
 				EFBDB1A6F35C690BABCA2183 /* Pods_PawApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,9 +127,19 @@
 		70137BF1244753DF00706AA2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				707CA160246D362A00617D53 /* Dictionary+Extension.swift */,
 				703070FA2448700800049E61 /* UIView+Animation.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		707CA15D246D33AB00617D53 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				70EBA591246C83EA00FAECEB /* VKService.swift */,
+				707CA15E246D33C700617D53 /* VKAPIError.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		70904D082433B75C00D4BA27 /* Models */ = {
@@ -173,7 +198,9 @@
 				70EDA2C7242A7726003FF902 /* AppDelegate.swift */,
 				70EDA2C9242A7726003FF902 /* SceneDelegate.swift */,
 				B7C7EAB72435174A00EFFC01 /* Controllers */,
+				70137BF1244753DF00706AA2 /* Extensions */,
 				70904D082433B75C00D4BA27 /* Models */,
+				707CA15D246D33AB00617D53 /* Services */,
 				B7C7EAB82435175F00EFFC01 /* Storyboards */,
 				70029D892439FF8E0033D19A /* Views */,
 			);
@@ -211,6 +238,7 @@
 		94DC1E407031764AFB40B3CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				703549F1246C69B000B70DE6 /* WebKit.framework */,
 				A22BDC2DFADB92AFE2EEDCE5 /* Pods_PawApp.framework */,
 			);
 			name = Frameworks;
@@ -228,14 +256,16 @@
 		B7C7EAB72435174A00EFFC01 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				70CC06CC244F5C4C000AC833 /* Animations */,
-				70137BF1244753DF00706AA2 /* Extensions */,
 				70904D092433B78300D4BA27 /* AllFriendsController */,
 				70F8135224348B14001513A8 /* AllGroupsController */,
+				70CC06CC244F5C4C000AC833 /* Animations */,
 				70F8135C2434A78A001513A8 /* FriendPhotosController */,
 				B73F9DDC244373B100BC358F /* NewsController */,
 				70F813572434960C001513A8 /* OtherGroupsController */,
+				703549ED246C654900B70DE6 /* LogInViewController.swift */,
 				70EDA2CB242A7726003FF902 /* ViewController.swift */,
+				70EBA593246C975C00FAECEB /* RequestsViewController.swift */,
+				703549EF246C68BE00B70DE6 /* WebViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -385,20 +415,26 @@
 				70EDA2CC242A7726003FF902 /* ViewController.swift in Sources */,
 				706F3C7224338C5F00239D99 /* AllFriendsTableViewController.swift in Sources */,
 				B73F9DE22443801100BC358F /* News.swift in Sources */,
+				70EBA594246C975C00FAECEB /* RequestsViewController.swift in Sources */,
 				B7E3DFE02450D89900D0C22A /* PopAnimator.swift in Sources */,
+				703549F0246C68BE00B70DE6 /* WebViewController.swift in Sources */,
 				70029D8D243A1DC30033D19A /* LikesButton.swift in Sources */,
 				B7C02518244CD5E400802632 /* FullSizePhotosController.swift in Sources */,
 				70F8135B243496BA001513A8 /* OtherGroupsTableViewCell.swift in Sources */,
 				B73F9DE0244374EE00BC358F /* NewsTableViewCell.swift in Sources */,
 				70CC06D0245057FD000AC833 /* AnimatedNavigationController.swift in Sources */,
 				70029D8B2439FFAA0033D19A /* RoundedImageView.swift in Sources */,
+				707CA161246D362A00617D53 /* Dictionary+Extension.swift in Sources */,
 				B7C7EABC2435C88800EFFC01 /* Group.swift in Sources */,
 				70EDA2C8242A7726003FF902 /* AppDelegate.swift in Sources */,
+				707CA15F246D33C700617D53 /* VKAPIError.swift in Sources */,
 				70EDA2CA242A7726003FF902 /* SceneDelegate.swift in Sources */,
+				703549EE246C654900B70DE6 /* LogInViewController.swift in Sources */,
 				70A2D5ED245C493400301B2B /* Session.swift in Sources */,
 				B73F9DDB244349DD00BC358F /* SectionHeaderView.swift in Sources */,
 				706F3C7424338C9700239D99 /* AllFriendsTableViewCell.swift in Sources */,
 				70F8135E2434A9BE001513A8 /* FriendPhotosCollectionViewController.swift in Sources */,
+				70EBA592246C83EA00FAECEB /* VKService.swift in Sources */,
 				70F8135424348BC9001513A8 /* AllGroupsTableViewController.swift in Sources */,
 				70F8135624348BEE001513A8 /* AllGroupsTableViewCell.swift in Sources */,
 			);
