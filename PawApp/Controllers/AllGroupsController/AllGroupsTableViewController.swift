@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class AllGroupsTableViewController: UITableViewController {
-    private var groups = [Group]()
-    private var filteredGroups = [Group]() {
+    private var groups = [VKGroup]()
+    private var filteredGroups = [VKGroup]() {
         didSet {
             tableView.reloadData()
         }
@@ -19,22 +21,21 @@ class AllGroupsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let group1 = Group(name: "Springfield Life",
-                           avatarImageName: "SpringfieldLife")
-        let group2 = Group(name: "The Itchy & Scratchy Show",
-                           avatarImageName: "TheItchy&Scratchy")
-        let group3 = Group(name: "The Srpingfield Times",
-                           avatarImageName: "TheSpringfieldTimes")
-        let group4 = Group(name: "Simpsons Fan",
-                           avatarImageName: "SimpsonsFan")
-        let group5 = Group(name: "Krusty the Clown show",
-                           avatarImageName: "KrustyTheClownShow")
-        let group6 = Group(name: "Bart's friends",
-                           avatarImageName: "BartsFriends")
-        
-        groups = [group1, group2, group3, group4, group5, group6]
-        
+        requestData()
+        navigationItem.rightBarButtonItem = nil
         tableView.tableFooterView = UIView()
+    }
+    
+    private func requestData() {
+        VKService.instance.loadGroups { result in
+            switch result {
+            case .success(let groups):
+                self.groups = groups
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 
     // MARK: - UITableViewDataSource
@@ -46,8 +47,10 @@ class AllGroupsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllGroupsTableViewCell", for: indexPath) as! AllGroupsTableViewCell
         let group = filteredGroups.isEmpty ? groups[indexPath.row] : filteredGroups[indexPath.row]
-        cell.allGroupsNameLabel.text = group.name
-        cell.allGroupsPhotoImageView.image = UIImage(named: group.avatarImageName)
+        let avatarUrl = URL(string: group.avatarUrl)!
+        cell.allGroupsNameLabel.text = group.groupName
+        cell.allGroupsPhotoImageView.imageView.af.setImage(withURL: avatarUrl)
+        cell.allGroupsPhotoImageView.setNeedsDisplay()
         return cell
     }
     
@@ -55,6 +58,7 @@ class AllGroupsTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    /*
     @IBAction func addGroups(segue: UIStoryboardSegue) {
         if segue.identifier == "addGroups" {
             let otherGroupsTableViewController = segue.source as! OtherGroupsTableViewController
@@ -69,6 +73,7 @@ class AllGroupsTableViewController: UITableViewController {
             }
         }
     }
+    */
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return filteredGroups.isEmpty ? true : false
@@ -90,7 +95,7 @@ extension AllGroupsTableViewController: UISearchBarDelegate {
             clearSearch(searchBar)
             return
         }
-        filteredGroups = groups.filter { $0.name.contains(searchText) }
+        filteredGroups = groups.filter { $0.groupName.contains(searchText) }
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -112,6 +117,6 @@ extension AllGroupsTableViewController: UISearchBarDelegate {
     private func clearSearch(_ searchBar: UISearchBar) {
         searchBar.text = nil
         view.endEditing(true)
-        filteredGroups = [Group]()
+        filteredGroups = [VKGroup]()
     }
 }

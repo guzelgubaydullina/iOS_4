@@ -26,11 +26,8 @@ class RequestsViewController: UIViewController {
     @IBAction func actionFriendsRequest(_ sender: UIButton) {
         VKService.instance.loadFriends { result in
             switch result {
-            case .success(let friendsData):
-                guard let friendsData = friendsData else {
-                    return
-                }
-                print(friendsData)
+            case .success(let friends):
+                print(friends)
             case .failure(let error):
                 print(error)
             }
@@ -38,13 +35,10 @@ class RequestsViewController: UIViewController {
     }
     
     @IBAction func actionPhotosRequest(_ sender: UIButton) {
-        VKService.instance.loadPhotos { result in
+        VKService.instance.loadPhotos(userId: 30676891) { result in
             switch result {
-            case .success(let photosData):
-                guard let photosData = photosData else {
-                    return
-                }
-                print(photosData)
+            case .success(let photos):
+                print(photos)
             case .failure(let error):
                 print(error)
             }
@@ -54,11 +48,8 @@ class RequestsViewController: UIViewController {
     @IBAction func actionGroupsRequest(_ sender: UIButton) {
         VKService.instance.loadGroups { result in
             switch result {
-            case .success(let groupsData):
-                guard let groupsData = groupsData else {
-                    return
-                }
-                print(groupsData)
+            case .success(let groups):
+                print(groups)
             case .failure(let error):
                 print(error)
             }

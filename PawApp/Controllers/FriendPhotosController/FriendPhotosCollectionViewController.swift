@@ -7,34 +7,49 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class FriendPhotosCollectionViewController: UICollectionViewController {
-    var user: User?
+    var userId: Int = 1
+    var photos = [VKPhoto]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        title = user?.name ?? ""
+        requestData()
+    }
+    
+    private func requestData() {
+        VKService.instance.loadPhotos(userId: userId) { result in
+            switch result {
+            case .success(let photos):
+                self.photos = photos
+                self.collectionView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 
     // MARK: UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return user?.photosImageName.count ?? 0
+        return photos.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendPhotosCollectionViewCell", for: indexPath) as! FriendPhotosCollectionViewCell
         
-        guard let photo = user?.photosImageName[indexPath.row] else {
-            return UICollectionViewCell()
-        }
-        cell.friendPhotoImageView.image = UIImage(named: photo)
+        let photo = photos[indexPath.row]
+        let photoUrl = URL(string: photo.url)!
+        cell.friendPhotoImageView.af.setImage(withURL: photoUrl)
 
         return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        /*
         if segue.identifier == "segueShowFullSizePhotos" {
             guard let viewController = segue.destination as? FullSizePhotosController,
                 let photosImageName = user?.photosImageName,
@@ -54,6 +69,7 @@ class FriendPhotosCollectionViewController: UICollectionViewController {
 //            }
 //            viewController.user = user!
         }
+        */
     }
 }
 
