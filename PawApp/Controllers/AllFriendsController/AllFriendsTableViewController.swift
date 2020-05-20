@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import AlamofireImage
+import RealmSwift
 
 class AllFriendsTableViewController: UITableViewController {
     private var filteredUsers = [VKUser]() {

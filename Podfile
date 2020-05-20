@@ -4,5 +4,6 @@ target 'PawApp' do
   pod 'lottie-ios'
   pod 'Alamofire', '~> 5.1'
   pod 'AlamofireImage', '~> 4.1'
+  pod 'RealmSwift'
 
 end

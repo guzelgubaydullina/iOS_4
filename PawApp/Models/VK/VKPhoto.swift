@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 struct VKPhotoRequestResponse: Codable {
     let response: VKPhotoResponse
@@ -16,15 +17,13 @@ struct VKPhotoResponse: Codable {
     let items: [VKPhoto]
 }
 
-struct VKPhoto: Codable {
-    var photoId: Int
-    var url: String
-}
-
-extension VKPhoto: CustomStringConvertible {
-    var description: String {
+class VKPhoto: Object, Codable {
+    override var description: String {
         return String(format: "%ld (%@)", photoId, url)
     }
+    
+    @objc dynamic var photoId: Int
+    @objc dynamic var url: String
 }
 
 extension VKPhoto {

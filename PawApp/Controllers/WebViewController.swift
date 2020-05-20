@@ -62,8 +62,8 @@ extension WebViewController: WKNavigationDelegate {
             decisionHandler(.allow)
             return
         }
-        Session.instance.accessToken = accessToken
-        Session.instance.userId = userId
+        VKSession.instance.accessToken = accessToken
+        VKSession.instance.userId = userId
         decisionHandler(.cancel)
         performSegue(withIdentifier: "segueShowTabBar", sender: nil)
     }

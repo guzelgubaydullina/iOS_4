@@ -14,7 +14,7 @@ class VKService {
     
     private let baseUrl = "https://api.vk.com/method/"
     private let apiVersion = "5.103"
-    private let accessToken = Session.instance.accessToken
+    private let accessToken = VKSession.instance.accessToken
     private lazy var commonParameters = [
         "access_token": accessToken,
         "v": apiVersion
@@ -41,6 +41,7 @@ class VKService {
                 do {
                     let requestResponse = try decoder.decode(VKUserRequestResponse.self,
                                                              from: data)
+                    RealmService.instance.saveObjects(requestResponse.response.items)
                     handler(.success(requestResponse.response.items))
                 } catch {
                     handler(.failure(error))
@@ -98,9 +99,10 @@ class VKService {
                 }
                 let decoder = JSONDecoder()
                 do {
-                    let requestResonse = try
+                    let requestResponse = try
                         decoder.decode(VKGroupRequestResponse.self, from: data)
-                    handler(.success(requestResonse.response.items))
+                    RealmService.instance.saveObjects(requestResponse.response.items)
+                    handler(.success(requestResponse.response.items))
                 } catch {
                     handler(.failure(error))
                 }
