@@ -12,9 +12,11 @@
 		700419A124544F2E00A3F994 /* lottieCat.json in Resources */ = {isa = PBXBuildFile; fileRef = 700419A024544F2E00A3F994 /* lottieCat.json */; };
 		70137BF024470A2E00706AA2 /* LaunchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70137BEF24470A2E00706AA2 /* LaunchController.swift */; };
 		703070FB2448700900049E61 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703070FA2448700800049E61 /* UIView+Animation.swift */; };
-		703549EE246C654900B70DE6 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703549ED246C654900B70DE6 /* LogInViewController.swift */; };
 		703549F0246C68BE00B70DE6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703549EF246C68BE00B70DE6 /* WebViewController.swift */; };
 		703549F2246C69B100B70DE6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 703549F1246C69B000B70DE6 /* WebKit.framework */; };
+		7063660B247178F5003CB830 /* VKUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7063660A247178F5003CB830 /* VKUser.swift */; };
+		7063660D247189DD003CB830 /* VKPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7063660C247189DD003CB830 /* VKPhoto.swift */; };
+		706366102471973F003CB830 /* VKGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7063660F2471973F003CB830 /* VKGroup.swift */; };
 		706F3C7224338C5F00239D99 /* AllFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F3C7124338C5F00239D99 /* AllFriendsTableViewController.swift */; };
 		706F3C7424338C9700239D99 /* AllFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F3C7324338C9700239D99 /* AllFriendsTableViewCell.swift */; };
 		707CA15F246D33C700617D53 /* VKAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707CA15E246D33C700617D53 /* VKAPIError.swift */; };
@@ -54,9 +56,11 @@
 		700419A024544F2E00A3F994 /* lottieCat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lottieCat.json; sourceTree = "<group>"; };
 		70137BEF24470A2E00706AA2 /* LaunchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchController.swift; sourceTree = "<group>"; };
 		703070FA2448700800049E61 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
-		703549ED246C654900B70DE6 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		703549EF246C68BE00B70DE6 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		703549F1246C69B000B70DE6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		7063660A247178F5003CB830 /* VKUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKUser.swift; sourceTree = "<group>"; };
+		7063660C247189DD003CB830 /* VKPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKPhoto.swift; sourceTree = "<group>"; };
+		7063660F2471973F003CB830 /* VKGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKGroup.swift; sourceTree = "<group>"; };
 		706F3C7124338C5F00239D99 /* AllFriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFriendsTableViewController.swift; sourceTree = "<group>"; };
 		706F3C7324338C9700239D99 /* AllFriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFriendsTableViewCell.swift; sourceTree = "<group>"; };
 		707CA15E246D33C700617D53 /* VKAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKAPIError.swift; sourceTree = "<group>"; };
@@ -133,6 +137,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		70636609247178A4003CB830 /* VK */ = {
+			isa = PBXGroup;
+			children = (
+				7063660A247178F5003CB830 /* VKUser.swift */,
+				7063660C247189DD003CB830 /* VKPhoto.swift */,
+				7063660F2471973F003CB830 /* VKGroup.swift */,
+			);
+			path = VK;
+			sourceTree = "<group>";
+		};
 		707CA15D246D33AB00617D53 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +159,7 @@
 		70904D082433B75C00D4BA27 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				70636609247178A4003CB830 /* VK */,
 				B7C7EABB2435C88800EFFC01 /* Group.swift */,
 				B73F9DE12443801100BC358F /* News.swift */,
 				70A2D5EC245C493400301B2B /* Session.swift */,
@@ -262,7 +277,6 @@
 				70F8135C2434A78A001513A8 /* FriendPhotosController */,
 				B73F9DDC244373B100BC358F /* NewsController */,
 				70F813572434960C001513A8 /* OtherGroupsController */,
-				703549ED246C654900B70DE6 /* LogInViewController.swift */,
 				70EDA2CB242A7726003FF902 /* ViewController.swift */,
 				70EBA593246C975C00FAECEB /* RequestsViewController.swift */,
 				703549EF246C68BE00B70DE6 /* WebViewController.swift */,
@@ -416,8 +430,10 @@
 				706F3C7224338C5F00239D99 /* AllFriendsTableViewController.swift in Sources */,
 				B73F9DE22443801100BC358F /* News.swift in Sources */,
 				70EBA594246C975C00FAECEB /* RequestsViewController.swift in Sources */,
+				706366102471973F003CB830 /* VKGroup.swift in Sources */,
 				B7E3DFE02450D89900D0C22A /* PopAnimator.swift in Sources */,
 				703549F0246C68BE00B70DE6 /* WebViewController.swift in Sources */,
+				7063660D247189DD003CB830 /* VKPhoto.swift in Sources */,
 				70029D8D243A1DC30033D19A /* LikesButton.swift in Sources */,
 				B7C02518244CD5E400802632 /* FullSizePhotosController.swift in Sources */,
 				70F8135B243496BA001513A8 /* OtherGroupsTableViewCell.swift in Sources */,
@@ -425,11 +441,11 @@
 				70CC06D0245057FD000AC833 /* AnimatedNavigationController.swift in Sources */,
 				70029D8B2439FFAA0033D19A /* RoundedImageView.swift in Sources */,
 				707CA161246D362A00617D53 /* Dictionary+Extension.swift in Sources */,
+				7063660B247178F5003CB830 /* VKUser.swift in Sources */,
 				B7C7EABC2435C88800EFFC01 /* Group.swift in Sources */,
 				70EDA2C8242A7726003FF902 /* AppDelegate.swift in Sources */,
 				707CA15F246D33C700617D53 /* VKAPIError.swift in Sources */,
 				70EDA2CA242A7726003FF902 /* SceneDelegate.swift in Sources */,
-				703549EE246C654900B70DE6 /* LogInViewController.swift in Sources */,
 				70A2D5ED245C493400301B2B /* Session.swift in Sources */,
 				B73F9DDB244349DD00BC358F /* SectionHeaderView.swift in Sources */,
 				706F3C7424338C9700239D99 /* AllFriendsTableViewCell.swift in Sources */,

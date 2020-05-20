@@ -12,7 +12,7 @@ class Session {
     static let instance = Session()
     
     var accessToken: String = ""
-    var userId: Int = 0
+    var userId: String = ""
     
     private init() {}
 }

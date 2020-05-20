@@ -57,13 +57,15 @@ extension WebViewController: WKNavigationDelegate {
                 return dict
         }
         
-        guard let accessToken = params["access_token"] else {
+        guard let accessToken = params["access_token"],
+            let userId = params["user_id"] else {
             decisionHandler(.allow)
             return
         }
         Session.instance.accessToken = accessToken
+        Session.instance.userId = userId
         decisionHandler(.cancel)
-        performSegue(withIdentifier: "segueShowAccount", sender: nil)
+        performSegue(withIdentifier: "segueShowTabBar", sender: nil)
     }
 }
 

@@ -7,114 +7,47 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class AllFriendsTableViewController: UITableViewController {
-    private var filteredUsers = [User]() {
+    private var filteredUsers = [VKUser]() {
         didSet {
             tableView.reloadData()
         }
     }
-    private var userGroups = [String: [User]]() {
+    private var userGroups = [String: [VKUser]]() {
         didSet {
-            users = userGroups.flatMap { $0.value }.sorted { $0.name < $1.name }
+            users = userGroups.flatMap { $0.value }.sorted { $0.lastName < $1.lastName }
             tableView.reloadData()
         }
     }
-    private var users = [User]()
+    private var users = [VKUser]()
     private var sectionTitles = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let homer = User(name: "Homer Simpson",
-                         age: 39,
-                         numberOfFollowers: 4,
-                         maritalStatus: .married,
-                         lifeStatus: .working,
-                         avatarImageName: "homer_simpson_avatar",
-                         photosImageName: ["homer_simpson_avatar", "HomerSimpson1", "HomerSimpson2"])
-        
-        let marge = User(name: "Marge Simpson",
-                         age: 37,
-                         numberOfFollowers: 4,
-                         maritalStatus: .married,
-                         lifeStatus: .housewife,
-                         avatarImageName: "marge_simpson_avatar",
-                         photosImageName: ["marge_simpson_avatar", "MargeSimpson1", "MargeSimpson2"])
-        
-        let bart = User(name: "Bart Simpson",
-                        age: 10,
-                        numberOfFollowers: 4,
-                        maritalStatus: .single,
-                        lifeStatus: .schoolboy,
-                        avatarImageName: "bart_simpson_avatar",
-                        photosImageName: ["bart_simpson_avatar", "BartSimpson1", "BartSimpson2", "BartSimpson3", "BartSimpson4", "BartSimpson5"])
-        
-        let lisa = User(name: "Lisa Simpson",
-                        age: 8,
-                        numberOfFollowers: 4,
-                        maritalStatus: .single,
-                        lifeStatus: .schoolgirl,
-                        avatarImageName: "lisa_simpson_avatar",
-                        photosImageName: ["lisa_simpson_avatar", "LisaSimpson1", "LisaSimpson2", "LisaSimpson3", "LisaSimpson4", "LisaSimpson5"])
-        
-        let maggie = User(name: "Maggie Simpson",
-                          age: 1,
-                          numberOfFollowers: 4,
-                          maritalStatus: .single,
-                          lifeStatus: .baby,
-                          avatarImageName: "maggie_simpson_avatar",
-                          photosImageName: ["maggie_simpson_avatar", "MaggieSimpson1", "MaggieSimpson2", "MaggieSimpson3", "MaggieSimpson4", "MaggieSimpson5"])
-        
-        let grandpa = User(name: "Abraham Simpson",
-                           age: 83,
-                           numberOfFollowers: 1,
-                           maritalStatus: .divorced,
-                           lifeStatus: .pensioner,
-                           avatarImageName: "abraham_simpson_avatar",
-                           photosImageName: ["abraham_simpson_avatar", "AbrahamSimpson1", "AbrahamSimpson2"])
-        
-        let gerald = User(name: "Baby Gerald",
-                          age: 1,
-                          numberOfFollowers: 0,
-                          maritalStatus: .single,
-                          lifeStatus: .baby,
-                          avatarImageName: "baby_gerald_avatar",
-                          photosImageName: ["baby_gerald_avatar", "BabyGerald1", "BabyGerald2"])
-        
-        let clancyWiggum = User(name: "Clancy Wiggum",
-                                age: 43,
-                                numberOfFollowers: 2,
-                                maritalStatus: .married,
-                                lifeStatus: .working,
-                                avatarImageName: "clancy_wiggum_avatar",
-                                photosImageName: ["clancy_wiggum_avatar", "ClancyWiggum3", "ClancyWiggum5", "ClancyWiggum1", "ClancyWiggum4", "ClancyWiggum2" ])
-        
-        let nedFlanders = User(name: "Ned Flanders",
-                       age: 60,
-                       numberOfFollowers: 100,
-                       maritalStatus: .married,
-                       lifeStatus: .working,
-                       avatarImageName: "ned_flanders_avatar",
-                       photosImageName: ["ned_flanders_avatar", "NedFlanders1", "NedFlanders2", "NedFlanders3", "NedFlanders4", "NedFlanders5"])
-        
-        let drHibbert = User(name: "Julius Hibbert",
-                             age: 40,
-                             numberOfFollowers: 10,
-                             maritalStatus: .married,
-                             lifeStatus: .working,
-                             avatarImageName: "julius_hibbert_avatar",
-                             photosImageName: ["julius_hibbert_avatar", "JuliusHibbert1", "JuliusHibbert2"])
 
-        let users = [homer, marge, bart, lisa, maggie, grandpa, gerald, clancyWiggum, nedFlanders, drHibbert]
-        configureUserGroups(with: users)
-        
+        requestData()
         tableView.tableFooterView = UIView()
     }
     
-    private func configureUserGroups(with users: [User]) {
+    private func requestData() {
+        VKService.instance.loadFriends { result in
+            switch result {
+            case .success(let users):
+                self.users = users
+                self.configureUserGroups(with: users)
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func configureUserGroups(with users: [VKUser]) {
         for user in users {
-            let userKey = String(user.name.prefix(1))
+            let userKey = String(user.lastName.prefix(1))
             if var userGroup = userGroups[userKey] {
                 userGroup.append(user)
                 userGroups[userKey] = userGroup
@@ -161,15 +94,17 @@ class AllFriendsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllFriendsTableViewCell",
                                                  for: indexPath) as! AllFriendsTableViewCell
-        var user: User? = nil
+        var user: VKUser? = nil
         if filteredUsers.isEmpty {
             let sectionTitle = sectionTitles[indexPath.section]
             user = userGroups[sectionTitle]?[indexPath.row]
         } else {
             user = filteredUsers[indexPath.row]
         }
-        cell.friendNameLabel.text = user!.name
-        cell.friendProfilePhotoImageView.image = UIImage(named: user!.avatarImageName)
+        let avatarUrl = URL(string: user!.avatarUrl)!
+        cell.friendNameLabel.text = String(format: "%@ %@", user!.firstName, user!.lastName)
+        cell.friendProfilePhotoImageView.imageView.af.setImage(withURL: avatarUrl)
+        cell.friendProfilePhotoImageView.setNeedsDisplay()
         return cell
     }
     
@@ -182,14 +117,14 @@ class AllFriendsTableViewController: UITableViewController {
                 return
             }
             
-            var user: User? = nil
+            var user: VKUser? = nil
             if filteredUsers.isEmpty {
                 let sectionTitle = sectionTitles[selectedIndexPath.section]
                 user = userGroups[sectionTitle]?[selectedIndexPath.row]
             } else {
                 user = filteredUsers[selectedIndexPath.row]
             }
-            viewController.user = user!
+            viewController.userId = user!.userId
         }
     }
 }
@@ -200,7 +135,8 @@ extension AllFriendsTableViewController: UISearchBarDelegate {
             clearSearch(searchBar)
             return
         }
-        filteredUsers = users.filter { $0.name.contains(searchText) }
+        filteredUsers = users.filter { $0.lastName.lowercased().contains(searchText.lowercased()) ||
+            $0.firstName.lowercased().contains(searchText.lowercased()) }
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -222,6 +158,6 @@ extension AllFriendsTableViewController: UISearchBarDelegate {
     private func clearSearch(_ searchBar: UISearchBar) {
         searchBar.text = nil
         view.endEditing(true)
-        filteredUsers = [User]()
+        filteredUsers = [VKUser]()
     }
 }

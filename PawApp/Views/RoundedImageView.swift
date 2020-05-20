@@ -15,7 +15,7 @@ class RoundedImageView: UIView {
             updateImageView()
         }
     }
-    private var imageView: UIImageView = {
+    var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
