@@ -11,6 +11,8 @@
 		70029D8D243A1DC30033D19A /* LikesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70029D8C243A1DC30033D19A /* LikesButton.swift */; };
 		700419A124544F2E00A3F994 /* lottieCat.json in Resources */ = {isa = PBXBuildFile; fileRef = 700419A024544F2E00A3F994 /* lottieCat.json */; };
 		70137BF024470A2E00706AA2 /* LaunchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70137BEF24470A2E00706AA2 /* LaunchController.swift */; };
+		7016494F247553C60084A32B /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7016494E247553C60084A32B /* RealmService.swift */; };
+		7025606824755C7E00D97316 /* VKSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7025606724755C7E00D97316 /* VKSession.swift */; };
 		703070FB2448700900049E61 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703070FA2448700800049E61 /* UIView+Animation.swift */; };
 		703549F0246C68BE00B70DE6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703549EF246C68BE00B70DE6 /* WebViewController.swift */; };
 		703549F2246C69B100B70DE6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 703549F1246C69B000B70DE6 /* WebKit.framework */; };
@@ -21,7 +23,6 @@
 		706F3C7424338C9700239D99 /* AllFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F3C7324338C9700239D99 /* AllFriendsTableViewCell.swift */; };
 		707CA15F246D33C700617D53 /* VKAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707CA15E246D33C700617D53 /* VKAPIError.swift */; };
 		707CA161246D362A00617D53 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707CA160246D362A00617D53 /* Dictionary+Extension.swift */; };
-		70A2D5ED245C493400301B2B /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A2D5EC245C493400301B2B /* Session.swift */; };
 		70CC06D0245057FD000AC833 /* AnimatedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CC06CF245057FD000AC833 /* AnimatedNavigationController.swift */; };
 		70EBA592246C83EA00FAECEB /* VKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EBA591246C83EA00FAECEB /* VKService.swift */; };
 		70EBA594246C975C00FAECEB /* RequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EBA593246C975C00FAECEB /* RequestsViewController.swift */; };
@@ -55,6 +56,8 @@
 		70029D8C243A1DC30033D19A /* LikesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesButton.swift; sourceTree = "<group>"; };
 		700419A024544F2E00A3F994 /* lottieCat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lottieCat.json; sourceTree = "<group>"; };
 		70137BEF24470A2E00706AA2 /* LaunchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchController.swift; sourceTree = "<group>"; };
+		7016494E247553C60084A32B /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		7025606724755C7E00D97316 /* VKSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKSession.swift; sourceTree = "<group>"; };
 		703070FA2448700800049E61 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
 		703549EF246C68BE00B70DE6 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		703549F1246C69B000B70DE6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -65,7 +68,6 @@
 		706F3C7324338C9700239D99 /* AllFriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFriendsTableViewCell.swift; sourceTree = "<group>"; };
 		707CA15E246D33C700617D53 /* VKAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKAPIError.swift; sourceTree = "<group>"; };
 		707CA160246D362A00617D53 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
-		70A2D5EC245C493400301B2B /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		70CC06CF245057FD000AC833 /* AnimatedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedNavigationController.swift; sourceTree = "<group>"; };
 		70EBA591246C83EA00FAECEB /* VKService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKService.swift; sourceTree = "<group>"; };
 		70EBA593246C975C00FAECEB /* RequestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 		70636609247178A4003CB830 /* VK */ = {
 			isa = PBXGroup;
 			children = (
+				7025606724755C7E00D97316 /* VKSession.swift */,
 				7063660A247178F5003CB830 /* VKUser.swift */,
 				7063660C247189DD003CB830 /* VKPhoto.swift */,
 				7063660F2471973F003CB830 /* VKGroup.swift */,
@@ -152,6 +155,7 @@
 			children = (
 				70EBA591246C83EA00FAECEB /* VKService.swift */,
 				707CA15E246D33C700617D53 /* VKAPIError.swift */,
+				7016494E247553C60084A32B /* RealmService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -162,7 +166,6 @@
 				70636609247178A4003CB830 /* VK */,
 				B7C7EABB2435C88800EFFC01 /* Group.swift */,
 				B73F9DE12443801100BC358F /* News.swift */,
-				70A2D5EC245C493400301B2B /* Session.swift */,
 				B7C7EAB92435C87800EFFC01 /* User.swift */,
 			);
 			path = Models;
@@ -427,7 +430,9 @@
 				B73F9DDE244373F700BC358F /* NewsTableViewController.swift in Sources */,
 				70137BF024470A2E00706AA2 /* LaunchController.swift in Sources */,
 				70EDA2CC242A7726003FF902 /* ViewController.swift in Sources */,
+				7025606824755C7E00D97316 /* VKSession.swift in Sources */,
 				706F3C7224338C5F00239D99 /* AllFriendsTableViewController.swift in Sources */,
+				7016494F247553C60084A32B /* RealmService.swift in Sources */,
 				B73F9DE22443801100BC358F /* News.swift in Sources */,
 				70EBA594246C975C00FAECEB /* RequestsViewController.swift in Sources */,
 				706366102471973F003CB830 /* VKGroup.swift in Sources */,
@@ -446,7 +451,6 @@
 				70EDA2C8242A7726003FF902 /* AppDelegate.swift in Sources */,
 				707CA15F246D33C700617D53 /* VKAPIError.swift in Sources */,
 				70EDA2CA242A7726003FF902 /* SceneDelegate.swift in Sources */,
-				70A2D5ED245C493400301B2B /* Session.swift in Sources */,
 				B73F9DDB244349DD00BC358F /* SectionHeaderView.swift in Sources */,
 				706F3C7424338C9700239D99 /* AllFriendsTableViewCell.swift in Sources */,
 				70F8135E2434A9BE001513A8 /* FriendPhotosCollectionViewController.swift in Sources */,

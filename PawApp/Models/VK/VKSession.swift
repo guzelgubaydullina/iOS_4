@@ -1,5 +1,5 @@
 //
-//  Session.swift
+//  VKSession.swift
 //  PawApp
 //
 //  Created by Guzel Gubaidullina on 01.05.2020.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-class Session {
-    static let instance = Session()
+class VKSession {
+    static let instance = VKSession()
     
     var accessToken: String = ""
     var userId: String = ""
