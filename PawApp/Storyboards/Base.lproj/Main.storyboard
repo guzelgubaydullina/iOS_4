@@ -727,7 +727,7 @@
         <!--Full Size Photos Controller-->
         <scene sceneID="qxA-kh-Cvd">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="VUU-1m-rb1" customClass="FullSizePhotosController" customModule="Paw_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FullSizePhotosController" modalPresentationStyle="fullScreen" id="VUU-1m-rb1" customClass="FullSizePhotosController" customModule="Paw_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="60l-Hw-r8z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
