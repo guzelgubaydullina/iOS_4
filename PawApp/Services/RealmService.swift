@@ -24,4 +24,27 @@ class RealmService {
             print(error)
         }
     }
+    
+    func fetchObjects<T: Object>(_ type: T.Type) -> [T]? {
+        do {
+            let realm = try Realm()
+            return realm.objects(type).map{$0}
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
+    func deleteObjects<T: Object>(_ type: T.Type) {
+        do {
+            let realm = try Realm()
+            if let objects = fetchObjects(type) {
+                realm.beginWrite()
+                realm.delete(objects)
+                try realm.commitWrite()
+            }
+        } catch {
+            print(error)
+        }
+    }
 }
