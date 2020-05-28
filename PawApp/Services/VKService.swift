@@ -112,28 +112,30 @@ class VKService {
     }
     
     func searchGroups(searchQuery: String,
-                      handler: @escaping (Result<[String: Any]?, Error>) -> Void) {
+                      handler: @escaping (Result<[VKGroup], Error>) -> Void) {
         let apiMethod = "groups.search"
         let apiEndpoint = baseUrl + apiMethod
         let requestParameters = commonParameters + [
             "q": searchQuery
         ]
-
+        
         AF.request(apiEndpoint,
                    method: .get,
                    parameters: requestParameters)
             .validate()
-            .responseJSON { response in
-            switch response.result {
-            case .success(let result):
-                if let result = result as? [String: Any] {
-                    handler(.success(result))
-                } else {
+            .responseData(completionHandler: { responseData in
+                guard let data = responseData.data else {
                     handler(.failure(VKAPIError.error("Data error")))
+                    return
                 }
-            case .failure(let error):
-                handler(.failure(error))
-            }
-        }
+                let decoder = JSONDecoder()
+                do {
+                    let requestResponse = try
+                        decoder.decode(VKGroupRequestResponse.self, from: data)
+                    handler(.success(requestResponse.response.items))
+                } catch {
+                    handler(.failure(error))
+                }
+            })
     }
 }

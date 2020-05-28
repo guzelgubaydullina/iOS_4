@@ -65,9 +65,6 @@ class RequestsViewController: UIViewController {
         VKService.instance.searchGroups(searchQuery: searchQuery) { result in
             switch result {
             case .success(let searchResultsData):
-                guard let searchResultsData = searchResultsData else {
-                    return
-                }
                 print(searchResultsData)
             case .failure(let error):
                 print(error)

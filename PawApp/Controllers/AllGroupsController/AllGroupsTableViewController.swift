@@ -103,7 +103,15 @@ extension AllGroupsTableViewController: UISearchBarDelegate {
             clearSearch(searchBar)
             return
         }
-        filteredGroups = groups.filter { $0.groupName.contains(searchText) }
+        
+        VKService.instance.searchGroups(searchQuery: searchText) { result in
+            switch result {
+            case .success(let groups):
+                self.filteredGroups = groups
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
