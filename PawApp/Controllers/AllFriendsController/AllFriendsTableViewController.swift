@@ -25,6 +25,7 @@ class AllFriendsTableViewController: UITableViewController {
     }
     private var users = [VKUser]()
     private var sectionTitles = [String]()
+    private var token: NotificationToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +52,31 @@ class AllFriendsTableViewController: UITableViewController {
         }
         self.users = users
         self.configureUserGroups(with: users)
-        self.tableView.reloadData()
+        self.configureRealmNotifications()
+    }
+    
+    private func configureRealmNotifications() {
+        guard let realm = try? Realm() else { return }
+        token = realm.objects(VKUser.self).observe({ [weak self] changes in
+            switch changes {
+            case .initial:
+                self?.tableView.reloadData()
+            case .update(_,
+                         deletions: let deletions,
+                         insertions: let insertions,
+                         modifications: let modifications):
+                self?.tableView.beginUpdates()
+                self?.tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                self?.tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
+                                     with: .automatic)
+                self?.tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                self?.tableView.endUpdates()
+            case .error(let error):
+                fatalError(error.localizedDescription)
+            }
+        })
     }
     
     private func configureUserGroups(with users: [VKUser]) {
