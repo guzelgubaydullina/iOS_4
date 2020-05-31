@@ -7,14 +7,12 @@
 //
 
 import UIKit
-import Lottie
 
 class ViewController: UIViewController {
     @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var animationView: AnimationView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,15 +26,6 @@ class ViewController: UIViewController {
 
         passwordTextField.layer.borderWidth = 1
         passwordTextField.layer.borderColor = UIColor.black.cgColor
-        
-        startAnimation()
-    }
-    
-    private func startAnimation() {
-        let animation = Animation.named("lottieCat")
-        animationView.animation = animation
-        animationView.loopMode = .loop
-        animationView.play()
     }
     
     override func viewWillAppear(_ animated: Bool) {

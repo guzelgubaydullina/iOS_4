@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		70029D8B2439FFAA0033D19A /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70029D8A2439FFAA0033D19A /* RoundedImageView.swift */; };
 		70029D8D243A1DC30033D19A /* LikesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70029D8C243A1DC30033D19A /* LikesButton.swift */; };
-		700419A124544F2E00A3F994 /* lottieCat.json in Resources */ = {isa = PBXBuildFile; fileRef = 700419A024544F2E00A3F994 /* lottieCat.json */; };
 		70137BF024470A2E00706AA2 /* LaunchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70137BEF24470A2E00706AA2 /* LaunchController.swift */; };
 		7016494F247553C60084A32B /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7016494E247553C60084A32B /* RealmService.swift */; };
 		7025606824755C7E00D97316 /* VKSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7025606724755C7E00D97316 /* VKSession.swift */; };
@@ -54,7 +53,6 @@
 		00F0E16ED7EDC834D3D633FC /* Pods-PawApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PawApp.debug.xcconfig"; path = "Target Support Files/Pods-PawApp/Pods-PawApp.debug.xcconfig"; sourceTree = "<group>"; };
 		70029D8A2439FFAA0033D19A /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		70029D8C243A1DC30033D19A /* LikesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesButton.swift; sourceTree = "<group>"; };
-		700419A024544F2E00A3F994 /* lottieCat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lottieCat.json; sourceTree = "<group>"; };
 		70137BEF24470A2E00706AA2 /* LaunchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchController.swift; sourceTree = "<group>"; };
 		7016494E247553C60084A32B /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		7025606724755C7E00D97316 /* VKSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKSession.swift; sourceTree = "<group>"; };
@@ -299,7 +297,6 @@
 		B7E3DFE12450D8D500D0C22A /* Animators */ = {
 			isa = PBXGroup;
 			children = (
-				700419A024544F2E00A3F994 /* lottieCat.json */,
 				B7E3DFDF2450D89900D0C22A /* PopAnimator.swift */,
 				B7E3DFDD2450D87E00D0C22A /* PushAnimator.swift */,
 			);
@@ -369,7 +366,6 @@
 				70EDA2D4242A7729003FF902 /* LaunchScreen.storyboard in Resources */,
 				70EDA2D1242A7729003FF902 /* Assets.xcassets in Resources */,
 				70EDA2CF242A7726003FF902 /* Main.storyboard in Resources */,
-				700419A124544F2E00A3F994 /* lottieCat.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
