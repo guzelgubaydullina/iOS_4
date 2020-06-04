@@ -30,6 +30,8 @@ class AllFriendsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        FirebaseService.instance.setValue("vksession",
+                                          VKSession.instance.toDictionary())
         requestData()
         tableView.tableFooterView = UIView()
     }

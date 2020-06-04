@@ -46,6 +46,9 @@ class AllGroupsTableViewController: UITableViewController {
         }
         self.groups = groups
         self.configureRealmNotifications()
+        let groupNames = groups.map { $0.groupName }
+        FirebaseService.instance.setValue("groups",
+                                          ["userGroups": groupNames] )
     }
     
     private func configureRealmNotifications() {
