@@ -15,5 +15,12 @@ class VKSession {
     var userId: String = ""
     
     private init() {}
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "accessToken": accessToken,
+            "userId": userId
+        ]
+    }
 }
 

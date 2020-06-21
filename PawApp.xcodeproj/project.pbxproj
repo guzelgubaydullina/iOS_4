@@ -13,6 +13,8 @@
 		7016494F247553C60084A32B /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7016494E247553C60084A32B /* RealmService.swift */; };
 		7025606824755C7E00D97316 /* VKSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7025606724755C7E00D97316 /* VKSession.swift */; };
 		703070FB2448700900049E61 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703070FA2448700800049E61 /* UIView+Animation.swift */; };
+		703468CE2488DFE800BFE728 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 703468CD2488DFE800BFE728 /* GoogleService-Info.plist */; };
+		703468D02488FE8200BFE728 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703468CF2488FE8200BFE728 /* FirebaseService.swift */; };
 		703549F0246C68BE00B70DE6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703549EF246C68BE00B70DE6 /* WebViewController.swift */; };
 		703549F2246C69B100B70DE6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 703549F1246C69B000B70DE6 /* WebKit.framework */; };
 		7063660B247178F5003CB830 /* VKUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7063660A247178F5003CB830 /* VKUser.swift */; };
@@ -57,6 +59,8 @@
 		7016494E247553C60084A32B /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		7025606724755C7E00D97316 /* VKSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKSession.swift; sourceTree = "<group>"; };
 		703070FA2448700800049E61 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
+		703468CD2488DFE800BFE728 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		703468CF2488FE8200BFE728 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		703549EF246C68BE00B70DE6 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		703549F1246C69B000B70DE6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		7063660A247178F5003CB830 /* VKUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKUser.swift; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 		707CA15D246D33AB00617D53 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				703468CF2488FE8200BFE728 /* FirebaseService.swift */,
 				70EBA591246C83EA00FAECEB /* VKService.swift */,
 				707CA15E246D33C700617D53 /* VKAPIError.swift */,
 				7016494E247553C60084A32B /* RealmService.swift */,
@@ -211,6 +216,7 @@
 			children = (
 				70EDA2D0242A7729003FF902 /* Assets.xcassets */,
 				70EDA2D5242A7729003FF902 /* Info.plist */,
+				703468CD2488DFE800BFE728 /* GoogleService-Info.plist */,
 				70EDA2C7242A7726003FF902 /* AppDelegate.swift */,
 				70EDA2C9242A7726003FF902 /* SceneDelegate.swift */,
 				B7C7EAB72435174A00EFFC01 /* Controllers */,
@@ -364,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70EDA2D4242A7729003FF902 /* LaunchScreen.storyboard in Resources */,
+				703468CE2488DFE800BFE728 /* GoogleService-Info.plist in Resources */,
 				70EDA2D1242A7729003FF902 /* Assets.xcassets in Resources */,
 				70EDA2CF242A7726003FF902 /* Main.storyboard in Resources */,
 			);
@@ -440,6 +447,7 @@
 				70F8135B243496BA001513A8 /* OtherGroupsTableViewCell.swift in Sources */,
 				B73F9DE0244374EE00BC358F /* NewsTableViewCell.swift in Sources */,
 				70CC06D0245057FD000AC833 /* AnimatedNavigationController.swift in Sources */,
+				703468D02488FE8200BFE728 /* FirebaseService.swift in Sources */,
 				70029D8B2439FFAA0033D19A /* RoundedImageView.swift in Sources */,
 				707CA161246D362A00617D53 /* Dictionary+Extension.swift in Sources */,
 				7063660B247178F5003CB830 /* VKUser.swift in Sources */,
