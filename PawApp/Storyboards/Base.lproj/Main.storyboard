@@ -215,6 +215,7 @@
                     <connections>
                         <segue destination="dL3-4b-BfO" kind="relationship" relationship="viewControllers" id="zBK-Yl-fYM"/>
                         <segue destination="xs2-RJ-LDK" kind="relationship" relationship="viewControllers" id="hZz-KC-BKg"/>
+                        <segue destination="0dL-ft-aZF" kind="relationship" relationship="viewControllers" id="TVz-E9-ld3"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TYu-73-p8n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -363,7 +364,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="NewsTableViewController" id="8wk-Do-mVJ" customClass="NewsTableViewController" customModule="Paw_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ezn-Rm-2XT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -540,7 +541,7 @@
                 <navigationController storyboardIdentifier="NewsTableViewControllerNC" id="0dL-ft-aZF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="News" image="flame.fill" catalog="system" id="msO-Zs-31V"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="mYR-Ey-c1v">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

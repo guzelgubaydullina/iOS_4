@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,17 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        FirebaseApp.configure()
-        Auth.auth().signInAnonymously() { (authResult, error) in
-            if let result = authResult {
-                guard let user = authResult?.user else { return }
-                let isAnonymous = user.isAnonymous
-                let uid = user.uid
-                print(uid)
-            } else if let error = error {
-                print(error)
-            }
-        }
         return true
     }
 
