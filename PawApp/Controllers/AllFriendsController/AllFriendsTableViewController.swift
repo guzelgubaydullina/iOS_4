@@ -135,7 +135,7 @@ class AllFriendsTableViewController: UITableViewController {
         } else {
             user = filteredUsers[indexPath.row]
         }
-        let avatarUrl = URL(string: user!.avatarUrl)!
+        let avatarUrl = URL(string: user!.avatarUrl ?? "")!
         cell.friendNameLabel.text = String(format: "%@ %@", user!.firstName, user!.lastName)
         cell.friendProfilePhotoImageView.imageView.af.setImage(withURL: avatarUrl)
         cell.friendProfilePhotoImageView.setNeedsDisplay()

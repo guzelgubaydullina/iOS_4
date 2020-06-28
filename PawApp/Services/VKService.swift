@@ -13,7 +13,7 @@ class VKService {
     static let instance = VKService()
     
     private let baseUrl = "https://api.vk.com/method/"
-    private let apiVersion = "5.103"
+    private let apiVersion = "5.111"
     private let accessToken = VKSession.instance.accessToken
     private lazy var commonParameters = [
         "access_token": accessToken,
@@ -137,5 +137,47 @@ class VKService {
                     handler(.failure(error))
                 }
             })
+    }
+    
+    func loadNews(handler: @escaping (Result<[VKNewsItem], Error>) -> Void) {
+        let apiMethod = "newsfeed.get"
+        let apiEndpoint = baseUrl + apiMethod
+        let requestParameters = commonParameters + [
+            "filters": "post"
+        ]
+        
+        DispatchQueue.global(qos: .background).async {
+            AF.request(apiEndpoint,
+                       method: .get,
+                       parameters: requestParameters)
+                .validate()
+                .responseData(completionHandler: { responseData in
+                    DispatchQueue.global(qos: .background).async {
+                        guard let data = responseData.data else {
+                            handler(.failure(VKAPIError.error("Data error")))
+                            return
+                        }
+                        let decoder = JSONDecoder()
+                        do {
+                            let requestResponse = try
+                                decoder.decode(VKNewsRequestResponse.self, from: data)
+                            let response = requestResponse.response
+                            var items = response.items
+                            for (index, item) in items.enumerated() {
+                                var item = item
+                                if item.sourceId < 0 {
+                                    item.sourceGroup = response.source(groupId: item.sourceId)
+                                } else {
+                                    item.sourceProfile = response.source(userId: item.sourceId)
+                                }
+                                items[index] = item
+                            }
+                            handler(.success(items))
+                        } catch {
+                            handler(.failure(error))
+                        }
+                    }
+                })
+        }
     }
 }
