@@ -10,6 +10,12 @@ import Foundation
 import Alamofire
 
 class VKService {
+    private static let groupsQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
+    
     static let instance = VKService()
     
     private let baseUrl = "https://api.vk.com/method/"
@@ -83,32 +89,41 @@ class VKService {
     }
     
     func loadGroups(handler: @escaping (Result<[VKGroup], Error>) -> Void) {
-        let apiMethod = "groups.get"
-        let apiEndpoint = baseUrl + apiMethod
-        let requestParameters = commonParameters + [
-            "extended": "1"
-        ]
-        
-        AF.request(apiEndpoint,
-                   method: .get,
-                   parameters: requestParameters)
-            .validate()
-            .responseData(completionHandler: { responseData in
-                guard let data = responseData.data else {
-                    handler(.failure(VKAPIError.error("Data error")))
-                    return
-                }
-                let decoder = JSONDecoder()
-                do {
-                    let requestResponse = try
-                        decoder.decode(VKGroupRequestResponse.self, from: data)
-                    RealmService.instance.deleteObjects(VKGroup.self)
-                    RealmService.instance.saveObjects(requestResponse.response.items)
-                    handler(.success(requestResponse.response.items))
-                } catch {
-                    handler(.failure(error))
-                }
-            })
+        let requestOperation = BlockOperation {
+            let apiMethod = "groups.get"
+            let apiEndpoint = self.baseUrl + apiMethod
+            let requestParameters = self.commonParameters + [
+                "extended": "1"
+            ]
+            
+            let responseOperation = BlockOperation {
+                AF.request(apiEndpoint,
+                           method: .get,
+                           parameters: requestParameters)
+                    .validate()
+                    .responseData(completionHandler: { responseData in
+                        let parsingOperation = BlockOperation {
+                            guard let data = responseData.data else {
+                                handler(.failure(VKAPIError.error("Data error")))
+                                return
+                            }
+                            let decoder = JSONDecoder()
+                            do {
+                                let requestResponse = try
+                                    decoder.decode(VKGroupRequestResponse.self, from: data)
+                                RealmService.instance.deleteObjects(VKGroup.self)
+                                RealmService.instance.saveObjects(requestResponse.response.items)
+                                handler(.success(requestResponse.response.items))
+                            } catch {
+                                handler(.failure(error))
+                            }
+                        }
+                        VKService.groupsQueue.addOperation(parsingOperation)
+                    })
+            }
+            VKService.groupsQueue.addOperation(responseOperation)
+        }
+        VKService.groupsQueue.addOperation(requestOperation)
     }
     
     func searchGroups(searchQuery: String,
