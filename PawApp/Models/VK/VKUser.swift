@@ -22,11 +22,16 @@ class VKUser: Object, Codable {
         return String(format: "%@ %@ (%ld)", firstName, lastName, userId)
     }
     
-   @objc dynamic var userId: Int
-   @objc dynamic var firstName: String
-   @objc dynamic var lastName: String
-   @objc dynamic var avatarUrl: String
-   @objc dynamic var isOnline: Int
+    @objc dynamic var userId: Int
+    @objc dynamic var firstName: String
+    @objc dynamic var lastName: String
+    @objc dynamic var avatarUrl100: String?
+    @objc dynamic var avatarUrl: String?
+    @objc dynamic var isOnline: Int
+    
+    var fullName: String {
+        return String(format: "%@ %@", firstName, lastName)
+    }
 }
 
 extension VKUser {
@@ -34,6 +39,7 @@ extension VKUser {
         case userId = "id"
         case firstName = "first_name"
         case lastName = "last_name"
+        case avatarUrl100 = "photo_100"
         case avatarUrl = "photo_200_orig"
         case isOnline = "online"
     }
