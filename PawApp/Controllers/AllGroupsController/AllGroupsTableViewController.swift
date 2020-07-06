@@ -29,18 +29,20 @@ class AllGroupsTableViewController: UITableViewController {
     }
     
     private func requestData() {
-        VKService.instance.loadGroups { result in
-            switch result {
-            case .success:
-                DispatchQueue.main.async {
-                    self.fetchCachedData()
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self.fetchCachedData()
-                }
-                print(error)
+        VKService.instance.loadGroups().get { [weak self] groups in
+            guard let self = self else {
+                return
             }
+            self.groups = groups
+            RealmService.instance.deleteObjects(VKGroup.self)
+            RealmService.instance.saveObjects(groups)
+        }.done(on: .main) { [weak self] _ in
+            guard let self = self else {
+                return
+            }
+            self.tableView.reloadData()
+        }.catch { error in
+            print(error)
         }
     }
     

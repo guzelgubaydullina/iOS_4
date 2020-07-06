@@ -8,14 +8,9 @@
 
 import Foundation
 import Alamofire
+import PromiseKit
 
 class VKService {
-    private static let groupsQueue: OperationQueue = {
-        let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 1
-        return queue
-    }()
-    
     static let instance = VKService()
     
     private let baseUrl = "https://api.vk.com/method/"
@@ -28,7 +23,7 @@ class VKService {
     
     private init() {}
     
-    func loadFriends(handler: @escaping (Result<[VKUser], Error>) -> Void) {
+    func loadFriends(handler: @escaping (Swift.Result<[VKUser], Error>) -> Void) {
         let apiMethod = "friends.get"
         let apiEndpoint = baseUrl + apiMethod
         let requestParameters = commonParameters + [
@@ -57,7 +52,7 @@ class VKService {
     }
     
     func loadPhotos(userId: Int,
-                    handler: @escaping (Result<[VKPhoto], Error>) -> Void) {
+                    handler: @escaping (Swift.Result<[VKPhoto], Error>) -> Void) {
         let apiMethod = "photos.getAll"
         let apiEndpoint = baseUrl + apiMethod
         var requestParameters = commonParameters + [
@@ -88,46 +83,37 @@ class VKService {
             })
     }
     
-    func loadGroups(handler: @escaping (Result<[VKGroup], Error>) -> Void) {
-        let requestOperation = BlockOperation {
-            let apiMethod = "groups.get"
-            let apiEndpoint = self.baseUrl + apiMethod
-            let requestParameters = self.commonParameters + [
-                "extended": "1"
-            ]
-            
-            let responseOperation = BlockOperation {
-                AF.request(apiEndpoint,
-                           method: .get,
-                           parameters: requestParameters)
-                    .validate()
-                    .responseData(completionHandler: { responseData in
-                        let parsingOperation = BlockOperation {
-                            guard let data = responseData.data else {
-                                handler(.failure(VKAPIError.error("Data error")))
-                                return
-                            }
-                            let decoder = JSONDecoder()
-                            do {
-                                let requestResponse = try
-                                    decoder.decode(VKGroupRequestResponse.self, from: data)
-                                RealmService.instance.deleteObjects(VKGroup.self)
-                                RealmService.instance.saveObjects(requestResponse.response.items)
-                                handler(.success(requestResponse.response.items))
-                            } catch {
-                                handler(.failure(error))
-                            }
-                        }
-                        VKService.groupsQueue.addOperation(parsingOperation)
-                    })
-            }
-            VKService.groupsQueue.addOperation(responseOperation)
+    func loadGroups() -> Promise<[VKGroup]> {
+        let apiMethod = "groups.get"
+        let apiEndpoint = baseUrl + apiMethod
+        let requestParameters = commonParameters + [
+            "extended": "1"
+        ]
+        
+        let promise = Promise<[VKGroup]> { resolver in
+            AF.request(apiEndpoint,
+                       method: .get,
+                       parameters: requestParameters)
+                .validate()
+                .responseData(completionHandler: { responseData in
+                    guard let data = responseData.data else {
+                        resolver.reject(VKAPIError.error("Data error"))
+                        return
+                    }
+                    let decoder = JSONDecoder()
+                    do {
+                        let requestResponse = try decoder.decode(VKGroupRequestResponse.self, from: data)
+                        resolver.fulfill(requestResponse.response.items)
+                    } catch {
+                        resolver.reject(error)
+                    }
+                })
         }
-        VKService.groupsQueue.addOperation(requestOperation)
+        return promise
     }
     
     func searchGroups(searchQuery: String,
-                      handler: @escaping (Result<[VKGroup], Error>) -> Void) {
+                      handler: @escaping (Swift.Result<[VKGroup], Error>) -> Void) {
         let apiMethod = "groups.search"
         let apiEndpoint = baseUrl + apiMethod
         let requestParameters = commonParameters + [
@@ -154,7 +140,7 @@ class VKService {
             })
     }
     
-    func loadNews(handler: @escaping (Result<[VKNewsItem], Error>) -> Void) {
+    func loadNews(handler: @escaping (Swift.Result<[VKNewsItem], Error>) -> Void) {
         let apiMethod = "newsfeed.get"
         let apiEndpoint = baseUrl + apiMethod
         let requestParameters = commonParameters + [

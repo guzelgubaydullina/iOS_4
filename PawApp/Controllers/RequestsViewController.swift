@@ -46,13 +46,10 @@ class RequestsViewController: UIViewController {
     }
     
     @IBAction func actionGroupsRequest(_ sender: UIButton) {
-        VKService.instance.loadGroups { result in
-            switch result {
-            case .success(let groups):
-                print(groups)
-            case .failure(let error):
-                print(error)
-            }
+        VKService.instance.loadGroups().get { groups in
+            print(groups)
+        }.catch { error in
+            print(error)
         }
     }
     

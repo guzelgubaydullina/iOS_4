@@ -4,6 +4,7 @@ target 'PawApp' do
 
   pod 'Alamofire', '~> 5.1'
   pod 'AlamofireImage', '~> 4.1'
+  pod "PromiseKit", "~> 6.8"
   pod 'RealmSwift'
 
 end
