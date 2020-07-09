@@ -10,6 +10,7 @@
 		70029D8B2439FFAA0033D19A /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70029D8A2439FFAA0033D19A /* RoundedImageView.swift */; };
 		70029D8D243A1DC30033D19A /* LikesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70029D8C243A1DC30033D19A /* LikesButton.swift */; };
 		70137BF024470A2E00706AA2 /* LaunchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70137BEF24470A2E00706AA2 /* LaunchController.swift */; };
+		7013F56D24B3091D00212080 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7013F56C24B3091D00212080 /* ImageService.swift */; };
 		7016494F247553C60084A32B /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7016494E247553C60084A32B /* RealmService.swift */; };
 		7025606824755C7E00D97316 /* VKSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7025606724755C7E00D97316 /* VKSession.swift */; };
 		703070FB2448700900049E61 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703070FA2448700800049E61 /* UIView+Animation.swift */; };
@@ -55,6 +56,7 @@
 		70029D8A2439FFAA0033D19A /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		70029D8C243A1DC30033D19A /* LikesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesButton.swift; sourceTree = "<group>"; };
 		70137BEF24470A2E00706AA2 /* LaunchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchController.swift; sourceTree = "<group>"; };
+		7013F56C24B3091D00212080 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		7016494E247553C60084A32B /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		7025606724755C7E00D97316 /* VKSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKSession.swift; sourceTree = "<group>"; };
 		703070FA2448700800049E61 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				70EBA591246C83EA00FAECEB /* VKService.swift */,
 				707CA15E246D33C700617D53 /* VKAPIError.swift */,
 				7016494E247553C60084A32B /* RealmService.swift */,
+				7013F56C24B3091D00212080 /* ImageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				707CA15F246D33C700617D53 /* VKAPIError.swift in Sources */,
 				70EDA2CA242A7726003FF902 /* SceneDelegate.swift in Sources */,
 				B73F9DDB244349DD00BC358F /* SectionHeaderView.swift in Sources */,
+				7013F56D24B3091D00212080 /* ImageService.swift in Sources */,
 				706F3C7424338C9700239D99 /* AllFriendsTableViewCell.swift in Sources */,
 				70F8135E2434A9BE001513A8 /* FriendPhotosCollectionViewController.swift in Sources */,
 				70EBA592246C83EA00FAECEB /* VKService.swift in Sources */,

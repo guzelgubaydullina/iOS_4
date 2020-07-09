@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import AlamofireImage
 
 class NewsTableViewCell: UITableViewCell {
     var news: VKNewsItem?
@@ -27,13 +25,7 @@ class NewsTableViewCell: UITableViewCell {
     
     func configure(with news: VKNewsItem) {
         self.news = news
-        
-        let avatarUrl = URL(string: news.authorAvatarUrl)!
-        authorImageView.imageView.af.setImage(withURL: avatarUrl)
-        authorImageView.setNeedsDisplay()
-        
         authorLabel.text = news.authorName
-        
         newsTextLabel.text = news.text
     }
 }

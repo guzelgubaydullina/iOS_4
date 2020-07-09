@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import Alamofire
-import AlamofireImage
 import RealmSwift
 
 class AllFriendsTableViewController: UITableViewController {
+    private var imageService: ImageService!
+    
     private var filteredUsers = [VKUser]() {
         didSet {
             tableView.reloadData()
@@ -30,6 +30,8 @@ class AllFriendsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        imageService = ImageService(container: tableView)
+        
         requestData()
         tableView.tableFooterView = UIView()
     }
@@ -135,9 +137,9 @@ class AllFriendsTableViewController: UITableViewController {
         } else {
             user = filteredUsers[indexPath.row]
         }
-        let avatarUrl = URL(string: user!.avatarUrl ?? "")!
         cell.friendNameLabel.text = String(format: "%@ %@", user!.firstName, user!.lastName)
-        cell.friendProfilePhotoImageView.imageView.af.setImage(withURL: avatarUrl)
+        cell.friendProfilePhotoImageView.imageView.image = imageService.photo(atIndexpath: indexPath,
+                                                                              byUrl: user!.avatarUrl ?? "")
         cell.friendProfilePhotoImageView.setNeedsDisplay()
         return cell
     }

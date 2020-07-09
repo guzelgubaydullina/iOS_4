@@ -9,6 +9,8 @@
 import UIKit
 
 class NewsTableViewController: UITableViewController {
+    private var imageService: ImageService!
+    
     private var items = [VKNewsItem]() {
         didSet {
             tableView.reloadData()
@@ -16,6 +18,8 @@ class NewsTableViewController: UITableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imageService = ImageService(container: tableView)
         
         requestData()
         tableView.tableFooterView = UIView()
@@ -43,7 +47,10 @@ class NewsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let newsModel = items[indexPath.row]
+        let avatarUrl = URL(string: newsModel.authorAvatarUrl)!
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as! NewsTableViewCell
+        cell.authorImageView.image = imageService.photo(atIndexpath: indexPath,
+                                                        byUrl: newsModel.authorAvatarUrl)
         cell.configure(with: newsModel)
         return cell
     }

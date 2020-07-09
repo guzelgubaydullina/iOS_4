@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import Alamofire
-import AlamofireImage
 import RealmSwift
 
 class AllGroupsTableViewController: UITableViewController {
+    private var imageService: ImageService!
+    
     private var groups = [VKGroup]()
     private var filteredGroups = [VKGroup]() {
         didSet {
@@ -22,6 +22,8 @@ class AllGroupsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imageService = ImageService(container: tableView)
         
         requestData()
         navigationItem.rightBarButtonItem = nil
@@ -63,9 +65,9 @@ class AllGroupsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllGroupsTableViewCell", for: indexPath) as! AllGroupsTableViewCell
         let group = filteredGroups.isEmpty ? groups[indexPath.row] : filteredGroups[indexPath.row]
-        let avatarUrl = URL(string: group.avatarUrl)!
         cell.allGroupsNameLabel.text = group.groupName
-        cell.allGroupsPhotoImageView.imageView.af.setImage(withURL: avatarUrl)
+        cell.allGroupsPhotoImageView.imageView.image = imageService.photo(atIndexpath: indexPath,
+                                                                          byUrl: group.avatarUrl)
         cell.allGroupsPhotoImageView.setNeedsDisplay()
         return cell
     }
