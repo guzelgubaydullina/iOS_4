@@ -12,6 +12,7 @@ class LikesButton: UIButton {
     private var isLiked = false
     var likesCountLabel: UILabel = {
         let likesCountLabel = UILabel()
+        likesCountLabel.backgroundColor = .systemBackground
         likesCountLabel.text = "\(Int.random(in: 0...100))"
         likesCountLabel.font = UIFont.systemFont(ofSize: 15,
                                                  weight: .regular)

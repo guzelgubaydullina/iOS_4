@@ -21,6 +21,10 @@ class VKService {
         "v": apiVersion
     ]
     
+    private let networkingQueue = DispatchQueue(label: "com.gubaydullina.vk-GuzelGubaydullina.networkingQueue",
+                                                qos: .background,
+                                                attributes: .concurrent)
+    
     private init() {}
     
     func loadFriends(handler: @escaping (Swift.Result<[VKUser], Error>) -> Void) {
@@ -33,7 +37,8 @@ class VKService {
                    method: .get,
                    parameters: requestParameters)
             .validate()
-            .responseData(completionHandler: { responseData in
+            .responseData(queue: networkingQueue,
+                          completionHandler: { responseData in
                 guard let data = responseData.data else {
                     handler(.failure(VKAPIError.error("Data error")))
                     return
@@ -44,9 +49,13 @@ class VKService {
                                                              from: data)
                     RealmService.instance.deleteObjects(VKUser.self)
                     RealmService.instance.saveObjects(requestResponse.response.items)
-                    handler(.success(requestResponse.response.items))
+                    DispatchQueue.main.async {
+                        handler(.success(requestResponse.response.items))
+                    }
                 } catch {
-                    handler(.failure(error))
+                    DispatchQueue.main.async {
+                        handler(.failure(error))
+                    }
                 }
             })
     }
@@ -67,7 +76,8 @@ class VKService {
                    method: .get,
                    parameters: requestParameters)
             .validate()
-            .responseData(completionHandler: { responseData in
+            .responseData(queue: networkingQueue,
+                          completionHandler: { responseData in
                 guard let data = responseData.data else {
                     handler(.failure(VKAPIError.error("Data error")))
                     return
@@ -76,9 +86,13 @@ class VKService {
                 do {
                     let requestResponse = try
                         decoder.decode(VKPhotoRequestResponse.self, from: data)
-                    handler(.success(requestResponse.response.items))
+                    DispatchQueue.main.async {
+                        handler(.success(requestResponse.response.items))
+                    }
                 } catch {
-                    handler(.failure(error))
+                    DispatchQueue.main.async {
+                        handler(.failure(error))
+                    }
                 }
             })
     }
@@ -95,7 +109,8 @@ class VKService {
                        method: .get,
                        parameters: requestParameters)
                 .validate()
-                .responseData(completionHandler: { responseData in
+                .responseData(queue: networkingQueue,
+                              completionHandler: { responseData in
                     guard let data = responseData.data else {
                         resolver.reject(VKAPIError.error("Data error"))
                         return
@@ -124,7 +139,8 @@ class VKService {
                    method: .get,
                    parameters: requestParameters)
             .validate()
-            .responseData(completionHandler: { responseData in
+            .responseData(queue: networkingQueue,
+                          completionHandler: { responseData in
                 guard let data = responseData.data else {
                     handler(.failure(VKAPIError.error("Data error")))
                     return
@@ -133,9 +149,13 @@ class VKService {
                 do {
                     let requestResponse = try
                         decoder.decode(VKGroupRequestResponse.self, from: data)
-                    handler(.success(requestResponse.response.items))
+                    DispatchQueue.main.async {
+                        handler(.success(requestResponse.response.items))
+                    }
                 } catch {
-                    handler(.failure(error))
+                    DispatchQueue.main.async {
+                        handler(.failure(error))
+                    }
                 }
             })
     }
@@ -147,38 +167,39 @@ class VKService {
             "filters": "post"
         ]
         
-        DispatchQueue.global(qos: .background).async {
-            AF.request(apiEndpoint,
-                       method: .get,
-                       parameters: requestParameters)
-                .validate()
-                .responseData(completionHandler: { responseData in
-                    DispatchQueue.global(qos: .background).async {
-                        guard let data = responseData.data else {
-                            handler(.failure(VKAPIError.error("Data error")))
-                            return
-                        }
-                        let decoder = JSONDecoder()
-                        do {
-                            let requestResponse = try
-                                decoder.decode(VKNewsRequestResponse.self, from: data)
-                            let response = requestResponse.response
-                            var items = response.items
-                            for (index, item) in items.enumerated() {
-                                var item = item
-                                if item.sourceId < 0 {
-                                    item.sourceGroup = response.source(groupId: item.sourceId)
-                                } else {
-                                    item.sourceProfile = response.source(userId: item.sourceId)
-                                }
-                                items[index] = item
+        AF.request(apiEndpoint,
+                   method: .get,
+                   parameters: requestParameters)
+            .validate()
+            .responseData(queue: networkingQueue,
+                          completionHandler: { responseData in
+                            guard let data = responseData.data else {
+                                handler(.failure(VKAPIError.error("Data error")))
+                                return
                             }
-                            handler(.success(items))
-                        } catch {
-                            handler(.failure(error))
-                        }
-                    }
-                })
-        }
+                            let decoder = JSONDecoder()
+                            do {
+                                let requestResponse = try
+                                    decoder.decode(VKNewsRequestResponse.self, from: data)
+                                let response = requestResponse.response
+                                var items = response.items
+                                for (index, item) in items.enumerated() {
+                                    var item = item
+                                    if item.sourceId < 0 {
+                                        item.sourceGroup = response.source(groupId: item.sourceId)
+                                    } else {
+                                        item.sourceProfile = response.source(userId: item.sourceId)
+                                    }
+                                    items[index] = item
+                                }
+                                DispatchQueue.main.async {
+                                    handler(.success(items))
+                                }
+                            } catch {
+                                DispatchQueue.main.async {
+                                    handler(.failure(error))
+                                }
+                            }
+            })
     }
 }

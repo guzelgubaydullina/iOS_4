@@ -12,6 +12,7 @@ class SectionHeaderView: UIView {
     private var sectionTitle: String
     private var sectionTitleLabel: UILabel = {
         let label = UILabel()
+        label.backgroundColor = .systemBackground
         label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +30,7 @@ class SectionHeaderView: UIView {
     }
     
     private func configureView() {
-        backgroundColor = UIColor.lightGray.withAlphaComponent(0.15)
+        backgroundColor = UIColor.lightGray
         sectionTitleLabel.text = sectionTitle
         addSubview(sectionTitleLabel)
         NSLayoutConstraint.activate([

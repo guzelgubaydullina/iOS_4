@@ -27,14 +27,12 @@ class NewsTableViewController: UITableViewController {
     
     private func requestData() {
         VKService.instance.loadNews { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let items):
-                    self.items = items
-                    self.tableView.reloadData()
-                case .failure(let error):
-                    print(error)
-                }
+            switch result {
+            case .success(let items):
+                self.items = items
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
             }
         }
     }
@@ -47,7 +45,6 @@ class NewsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let newsModel = items[indexPath.row]
-        let avatarUrl = URL(string: newsModel.authorAvatarUrl)!
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as! NewsTableViewCell
         cell.authorImageView.image = imageService.photo(atIndexpath: indexPath,
                                                         byUrl: newsModel.authorAvatarUrl)
