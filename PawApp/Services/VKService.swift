@@ -160,12 +160,19 @@ class VKService {
             })
     }
     
-    func loadNews(handler: @escaping (Swift.Result<[VKNewsItem], Error>) -> Void) {
+    func loadNews(startFrom: String?,
+                  handler: @escaping (Swift.Result<[VKNewsItem], Error>, String?) -> Void) {
         let apiMethod = "newsfeed.get"
         let apiEndpoint = baseUrl + apiMethod
-        let requestParameters = commonParameters + [
-            "filters": "post"
+        var requestParameters = commonParameters + [
+            "filters": "post",
+            "count": 10
         ]
+        if let startFrom = startFrom {
+            requestParameters = requestParameters + [
+                "start_from": startFrom
+            ]
+        }
         
         AF.request(apiEndpoint,
                    method: .get,
@@ -174,7 +181,7 @@ class VKService {
             .responseData(queue: networkingQueue,
                           completionHandler: { responseData in
                             guard let data = responseData.data else {
-                                handler(.failure(VKAPIError.error("Data error")))
+                                handler(.failure(VKAPIError.error("Data error")), nil)
                                 return
                             }
                             let decoder = JSONDecoder()
@@ -193,11 +200,11 @@ class VKService {
                                     items[index] = item
                                 }
                                 DispatchQueue.main.async {
-                                    handler(.success(items))
+                                    handler(.success(items), response.nextFrom)
                                 }
                             } catch {
                                 DispatchQueue.main.async {
-                                    handler(.failure(error))
+                                    handler(.failure(error), nil)
                                 }
                             }
             })

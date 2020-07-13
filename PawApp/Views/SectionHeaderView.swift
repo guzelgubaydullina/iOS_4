@@ -12,7 +12,7 @@ class SectionHeaderView: UIView {
     private var sectionTitle: String
     private var sectionTitleLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .systemBackground
+        label.backgroundColor = UIColor.lightGray
         label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false

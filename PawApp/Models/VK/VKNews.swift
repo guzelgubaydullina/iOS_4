@@ -16,6 +16,7 @@ struct VKNewsResponse: Codable {
     let items: [VKNewsItem]
     let profiles: [VKUser]
     let groups: [VKGroup]
+    let nextFrom: String
     
     func source(userId: Int) -> VKUser? {
         let filteredProfiles = profiles.filter { $0.userId == userId }
@@ -27,6 +28,16 @@ struct VKNewsResponse: Codable {
         return filteredGroups.first
     }
 }
+
+extension VKNewsResponse {
+    enum CodingKeys: String, CodingKey {
+        case items = "items"
+        case profiles = "profiles"
+        case groups = "groups"
+        case nextFrom = "next_from"
+    }
+}
+
 
 struct VKNewsItem: Codable {
     let text: String
@@ -61,5 +72,3 @@ extension VKNewsItem {
         case sourceId = "source_id"
     }
 }
-
-

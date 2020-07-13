@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="23i-kr-Jik">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Pp8-Zu-kbe">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -374,11 +374,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsTableViewCell" rowHeight="169" id="OKi-R6-2dN" customClass="NewsTableViewCell" customModule="Paw_App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="169"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsTableViewCell" rowHeight="221" id="OKi-R6-2dN" customClass="NewsTableViewCell" customModule="Paw_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="221"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OKi-R6-2dN" id="XI0-DQ-ST0">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="169"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="221"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Abraham Simpson" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayk-Eg-uc2">
@@ -389,8 +389,11 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ktv-fM-cWl">
-                                            <rect key="frame" x="20" y="59" width="374" height="98"/>
+                                            <rect key="frame" x="20" y="59" width="374" height="50"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="igs-dB-MqC"/>
+                                            </constraints>
                                             <string key="text">Sint id elit amet quis adipisicing eiusmod dolore elit. Aliquip id anim ullamco amet in cupidatat ullamco ea minim consequat aute amet officia. Ex culpa consectetur cupidatat ad minim adipisicing enim occaecat aliqua amet officia. Lorem pariatur tempor ut voluptate enim culpa commodo magna dolor elit veniam.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
@@ -404,15 +407,27 @@
                                                 <constraint firstAttribute="width" constant="40" id="n0R-Xe-qHO"/>
                                             </constraints>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q8C-Ea-Zq6">
+                                            <rect key="frame" x="20" y="121" width="80" height="88"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="80" id="CzO-iC-yqR"/>
+                                            </constraints>
+                                            <state key="normal" title="Больше..."/>
+                                            <connections>
+                                                <action selector="actionShowFullButtonTapped:" destination="OKi-R6-2dN" eventType="touchUpInside" id="9VW-sr-XdA"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="ayk-Eg-uc2" firstAttribute="centerY" secondItem="9Yq-nB-9ta" secondAttribute="centerY" id="1st-At-eIA"/>
+                                        <constraint firstItem="q8C-Ea-Zq6" firstAttribute="leading" secondItem="XI0-DQ-ST0" secondAttribute="leadingMargin" id="ChO-aR-dSf"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="ayk-Eg-uc2" secondAttribute="trailing" constant="8" id="Drn-It-AvL"/>
                                         <constraint firstItem="ayk-Eg-uc2" firstAttribute="leading" secondItem="9Yq-nB-9ta" secondAttribute="trailing" constant="8" id="GyI-kq-j2c"/>
-                                        <constraint firstAttribute="bottom" secondItem="ktv-fM-cWl" secondAttribute="bottom" constant="12" id="JET-iN-Tvb"/>
                                         <constraint firstItem="ktv-fM-cWl" firstAttribute="leading" secondItem="XI0-DQ-ST0" secondAttribute="leadingMargin" id="Kyu-XX-55c"/>
                                         <constraint firstItem="9Yq-nB-9ta" firstAttribute="top" secondItem="XI0-DQ-ST0" secondAttribute="topMargin" id="UlV-3C-BXJ"/>
                                         <constraint firstItem="ktv-fM-cWl" firstAttribute="top" secondItem="9Yq-nB-9ta" secondAttribute="bottom" constant="8" id="XCY-Uk-7qc"/>
+                                        <constraint firstItem="q8C-Ea-Zq6" firstAttribute="top" secondItem="ktv-fM-cWl" secondAttribute="bottom" constant="12" id="ZlG-YW-KQW"/>
+                                        <constraint firstAttribute="bottom" secondItem="q8C-Ea-Zq6" secondAttribute="bottom" constant="12" id="gld-Ge-Ciw"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="ktv-fM-cWl" secondAttribute="trailing" id="ktr-l8-EEV"/>
                                         <constraint firstItem="9Yq-nB-9ta" firstAttribute="leading" secondItem="XI0-DQ-ST0" secondAttribute="leadingMargin" id="t82-pc-7bx"/>
                                     </constraints>
@@ -421,6 +436,8 @@
                                     <outlet property="authorImageView" destination="9Yq-nB-9ta" id="0ew-1k-toc"/>
                                     <outlet property="authorLabel" destination="ayk-Eg-uc2" id="aXE-rs-jPR"/>
                                     <outlet property="newsTextLabel" destination="ktv-fM-cWl" id="sj8-I7-kzW"/>
+                                    <outlet property="newsTextLabelHeightConstraint" destination="igs-dB-MqC" id="H1o-8f-YD2"/>
+                                    <outlet property="showMoreButton" destination="q8C-Ea-Zq6" id="2xm-eo-9bC"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
