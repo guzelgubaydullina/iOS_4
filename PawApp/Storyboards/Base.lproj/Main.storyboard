@@ -278,7 +278,6 @@
                                 <connections>
                                     <outlet property="friendNameLabel" destination="Cdw-Td-Jt0" id="utk-Bx-J9x"/>
                                     <outlet property="friendProfilePhotoImageView" destination="oTn-Im-6TX" id="kzV-bS-j0s"/>
-                                    <segue destination="Xg9-8J-d7Z" kind="show" identifier="segueShowPhotos" id="OzP-g5-MLI"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -557,9 +556,9 @@
         <!--Friend Photos Collection View Controller-->
         <scene sceneID="CXh-Dc-Euh">
             <objects>
-                <collectionViewController id="Xg9-8J-d7Z" customClass="FriendPhotosCollectionViewController" customModule="Paw_App" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="FriendPhotosCollectionViewController" id="Xg9-8J-d7Z" customClass="FriendPhotosCollectionViewController" customModule="Paw_App" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="rDs-BV-ZDp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="1" id="QFg-hn-KaS">

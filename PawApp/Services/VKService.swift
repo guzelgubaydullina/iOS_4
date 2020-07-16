@@ -70,7 +70,7 @@ class VKService {
             "photo_sizes": "0",
             "count": "30"
         ]
-        requestParameters["v"] = "5.00"
+        requestParameters["v"] = "5.21"
         
         AF.request(apiEndpoint,
                    method: .get,
