@@ -94,6 +94,23 @@ class AllFriendsTableViewController: UITableViewController {
         sectionTitles = [String](userGroups.keys)
         sectionTitles = sectionTitles.sorted { $0 < $1 }
     }
+    
+    // MARK: - UITableViewDelegate
+    
+    override func tableView(_ tableView: UITableView,
+                            didSelectRowAt indexPath: IndexPath) {
+        var user: VKUser? = nil
+        if filteredUsers.isEmpty {
+            let sectionTitle = sectionTitles[indexPath.section]
+            user = userGroups[sectionTitle]?[indexPath.row]
+        } else {
+            user = filteredUsers[indexPath.row]
+        }
+        let viewController = FriendPhotosCollectionViewController()
+        viewController.userId = user!.userId
+        navigationController?.pushViewController(viewController,
+                                                 animated: true)
+    }
 
     // MARK: - UITableViewDataSource
     
@@ -142,26 +159,6 @@ class AllFriendsTableViewController: UITableViewController {
                                                                               byUrl: user!.avatarUrl ?? "")
         cell.friendProfilePhotoImageView.setNeedsDisplay()
         return cell
-    }
-    
-    // MARK: - Segues
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueShowPhotos" {
-            guard let viewController = segue.destination as? FriendPhotosCollectionViewController,
-                let selectedIndexPath = tableView.indexPathForSelectedRow else {
-                return
-            }
-            
-            var user: VKUser? = nil
-            if filteredUsers.isEmpty {
-                let sectionTitle = sectionTitles[selectedIndexPath.section]
-                user = userGroups[sectionTitle]?[selectedIndexPath.row]
-            } else {
-                user = filteredUsers[selectedIndexPath.row]
-            }
-            viewController.userId = user!.userId
-        }
     }
 }
 

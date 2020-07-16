@@ -9,73 +9,73 @@
 import UIKit
 import Alamofire
 import AlamofireImage
+import AsyncDisplayKit
 
-class FriendPhotosCollectionViewController: UICollectionViewController {
+class FriendPhotosCollectionViewController: ASDKViewController<ASCollectionNode> {
     var userId: Int = 1
     var photos = [VKPhoto]()
-
+    
+    let collectionNode: ASCollectionNode
+    
+    override init() {
+        collectionNode = ASCollectionNode(frame: .zero,
+                                          collectionViewLayout: UICollectionViewFlowLayout())
+        super.init(node: collectionNode)
+        collectionNode.backgroundColor = .systemBackground
+        collectionNode.dataSource = self
+        collectionNode.delegate = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         requestData()
     }
     
     private func requestData() {
-        VKService.instance.loadPhotos(userId: userId) { result in
+        VKService.instance.loadPhotos(userId: userId) { [weak self] result in
             switch result {
             case .success(let photos):
+                guard let self = self else { return }
                 self.photos = photos
-                self.collectionView.reloadData()
+                self.collectionNode.reloadData()
             case .failure(let error):
                 print(error)
             }
         }
     }
+}
 
-    // MARK: UICollectionViewDataSource
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendPhotosCollectionViewCell", for: indexPath) as! FriendPhotosCollectionViewCell
-        
-        let photo = photos[indexPath.row]
-        let photoUrl = URL(string: photo.url)!
-        cell.friendPhotoImageView.af.setImage(withURL: photoUrl)
-
-        return cell
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        /*
-        if segue.identifier == "segueShowFullSizePhotos" {
-            guard let viewController = segue.destination as? FullSizePhotosController,
-                let photosImageName = user?.photosImageName,
-                let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first else {
-                    return
-            }
-            
-            viewController.photosNames = photosImageName
-            viewController.selectedPhotoIndex = selectedIndexPath.row
-            
-//            var user: User? = nil
-//            if filteredUsers.isEmpty {
-//                let sectionTitle = sectionTitles[selectedIndexPath.section]
-//                user = userGroups[sectionTitle]?[selectedIndexPath.row]
-//            } else {
-//                user = filteredUsers[selectedIndexPath.row]
-//            }
-//            viewController.user = user!
-        }
-        */
+extension FriendPhotosCollectionViewController: ASCollectionDelegate {
+    func collectionNode(_ collectionNode: ASCollectionNode,
+                        constrainedSizeForItemAt indexPath: IndexPath) -> ASSizeRange {
+        let size = CGSize(width: (view.frame.size.width / 3) - 1,
+                          height: (view.frame.size.width / 3) - 1)
+        let range = ASSizeRange(min: size,
+                                max: size)
+        return range
     }
 }
 
-extension FriendPhotosCollectionViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (view.frame.size.width / 3) - 1,
-                      height: (view.frame.size.width / 3) - 1)
+extension FriendPhotosCollectionViewController: ASCollectionDataSource {
+    func collectionNode(_ collectionNode: ASCollectionNode,
+                        numberOfItemsInSection section: Int) -> Int {
+        return photos.count
+    }
+    
+    func numberOfSections(in collectionNode: ASCollectionNode) -> Int {
+        return 1
+    }
+    
+    func collectionNode(_ collectionNode: ASCollectionNode,
+                        nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
+        let photo = photos[indexPath.row]
+        return {
+            return FriendPhotosNode(with: photo)
+        }
     }
 }
